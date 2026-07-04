@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แดชบอร์ดคัดกรองพยาธิใบไม้ในตับ (OV) อ.เสลภูมิ ปี 2569</title>
+<style>
+:root{
+  --surface:#fcfcfb; --surface-2:#ffffff; --page:#f4f4f1;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,.10);
+  --blue:#2a78d6; --blue-soft:#cde2fb; --aqua:#1baf7a; --aqua-soft:#c9efe0;
+  --red:#e34948; --red-soft:#f7d3d3; --green:#0ca30c; --orange:#eb6834; --violet:#4a3aa7;
+  --yellow:#eda100;
+  --shadow:0 1px 2px rgba(11,11,11,.04),0 4px 16px rgba(11,11,11,.06);
+  --radius:14px;
+}
+:root[data-theme="dark"], html[data-theme="dark"]{
+  --surface:#1a1a19; --surface-2:#232321; --page:#0d0d0d;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,.10);
+  --blue:#3987e5; --blue-soft:#16324f; --aqua:#199e70; --aqua-soft:#123a2b;
+  --red:#e66767; --red-soft:#4a2222; --green:#0ca30c; --orange:#d95926; --violet:#9085e9;
+  --yellow:#c98500;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 20px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --surface:#1a1a19; --surface-2:#232321; --page:#0d0d0d;
+    --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,.10);
+    --blue:#3987e5; --blue-soft:#16324f; --aqua:#199e70; --aqua-soft:#123a2b;
+    --red:#e66767; --red-soft:#4a2222; --green:#0ca30c; --orange:#d95926; --violet:#9085e9;
+    --yellow:#c98500;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 20px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Sarabun","Segoe UI",system-ui,-apple-system,sans-serif;
+  background:var(--page); color:var(--ink);
+  font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue)}
+.wrap{max-width:1360px;margin:0 auto;padding:18px 20px 60px}
+/* Header */
+header.top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--aqua));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;flex:none}
+.brand h1{font-size:19px;margin:0;line-height:1.25;font-weight:700}
+.brand p{margin:2px 0 0;font-size:12.5px;color:var(--ink-2)}
+.top-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--border);
+  background:var(--surface);color:var(--ink-2);display:inline-flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}
+.dot.ok{background:var(--green)} .dot.err{background:var(--red)} .dot.load{background:var(--yellow)}
+button{font-family:inherit;font-size:14px;cursor:pointer}
+.btn{border:1px solid var(--border);background:var(--surface);color:var(--ink);
+  padding:8px 14px;border-radius:10px;display:inline-flex;align-items:center;gap:7px;transition:.15s}
+.btn:hover{border-color:var(--blue);color:var(--blue)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.primary:hover{filter:brightness(1.07);color:#fff}
+.btn.danger{color:var(--red);border-color:var(--red-soft)}
+.btn.danger:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.btn.sm{padding:5px 9px;font-size:12.5px;border-radius:8px}
+/* Tabs */
+nav.tabs{display:flex;gap:4px;margin:16px 0 20px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.tab{padding:9px 15px;border:none;background:none;color:var(--ink-2);font-size:14.5px;
+  border-bottom:2.5px solid transparent;margin-bottom:-1px;font-weight:500}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+.view{display:none} .view.active{display:block}
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow)}
+.grid-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px;margin-bottom:18px}
+.kpi{padding:16px 17px;position:relative;overflow:hidden}
+.kpi .lab{font-size:12.5px;color:var(--ink-2);font-weight:500;display:flex;align-items:center;gap:6px}
+.kpi .val{font-size:29px;font-weight:700;margin-top:6px;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.kpi .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.kpi .bar-accent{position:absolute;left:0;top:0;bottom:0;width:4px}
+.kpi.blue .bar-accent{background:var(--blue)} .kpi.red .bar-accent{background:var(--red)}
+.kpi.aqua .bar-accent{background:var(--aqua)} .kpi.green .bar-accent{background:var(--green)}
+.kpi.violet .bar-accent{background:var(--violet)} .kpi.orange .bar-accent{background:var(--orange)}
+.pill{font-size:11.5px;padding:2px 8px;border-radius:99px;font-weight:600;display:inline-block}
+.pill.pos{background:var(--red-soft);color:var(--red)} .pill.neg{background:var(--aqua-soft);color:var(--aqua)}
+/* charts layout */
+.grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px}
+.grid-2b{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:900px){.grid-2,.grid-2b{grid-template-columns:1fr}}
+.panel{padding:16px 18px}
+.panel h3{margin:0 0 3px;font-size:15.5px;font-weight:700}
+.panel .desc{font-size:12px;color:var(--muted);margin:0 0 14px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin-bottom:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:3px;display:inline-block}
+/* svg bars */
+.svgchart text{font-family:inherit}
+.rowbar{transition:.15s}
+.rowbar:hover{opacity:.82}
+/* Table */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.search{flex:1;min-width:200px;position:relative}
+.search input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--border);border-radius:10px;
+  background:var(--surface);color:var(--ink);font-family:inherit;font-size:14px}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.5}
+select.flt,input.flt{padding:8px 10px;border:1px solid var(--border);border-radius:10px;
+  background:var(--surface);color:var(--ink);font-family:inherit;font-size:13.5px}
+.tablecard{overflow:hidden}
+.tblscroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+thead th{background:var(--surface-2);text-align:right;padding:11px 12px;font-weight:600;color:var(--ink-2);
+  white-space:nowrap;border-bottom:1px solid var(--border);position:sticky;top:0;cursor:pointer;user-select:none}
+thead th.n,tbody td.n{text-align:left}
+thead th:first-child{text-align:right}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--grid);white-space:nowrap;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--surface-2)}
+.tag{font-size:11.5px;padding:2px 8px;border-radius:6px;font-weight:600}
+.tag.pos{background:var(--red-soft);color:var(--red)} .tag.neg{background:var(--aqua-soft);color:var(--aqua)}
+.tag.yes{background:var(--aqua-soft);color:var(--aqua)} .tag.no{background:var(--grid);color:var(--ink-2)}
+.tag.ml{background:var(--blue-soft);color:var(--blue)} .tag.mdt{background:#efe9ff;color:var(--violet)}
+:root[data-theme="dark"] .tag.mdt{background:#2a2540}
+.actbtn{border:none;background:none;cursor:pointer;padding:5px;border-radius:7px;color:var(--ink-2)}
+.actbtn:hover{background:var(--surface-2);color:var(--blue)}
+.actbtn.del:hover{color:var(--red)}
+.pager{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:12px 14px;flex-wrap:wrap}
+.pager .info{font-size:13px;color:var(--muted)}
+.pg{display:flex;gap:4px;align-items:center}
+.pg button{min-width:34px;height:34px;border:1px solid var(--border);background:var(--surface);
+  border-radius:8px;color:var(--ink)}
+.pg button:disabled{opacity:.4;cursor:default}
+.pg button.cur{background:var(--blue);color:#fff;border-color:var(--blue)}
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-start;
+  justify-content:center;padding:30px 16px;z-index:50;overflow-y:auto}
+.overlay.show{display:flex}
+.modal{background:var(--surface);border-radius:16px;width:100%;max-width:760px;box-shadow:var(--shadow);
+  border:1px solid var(--border)}
+.modal-h{display:flex;align-items:center;justify-content:space-between;padding:17px 20px;
+  border-bottom:1px solid var(--border)}
+.modal-h h3{margin:0;font-size:17px}
+.modal-b{padding:18px 20px;max-height:64vh;overflow-y:auto}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px 16px}
+@media(max-width:640px){.formgrid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.fg label{font-size:12.5px;color:var(--ink-2);font-weight:500}
+.fg input,.fg select{padding:8px 10px;border:1px solid var(--border);border-radius:9px;
+  background:var(--surface-2);color:var(--ink);font-family:inherit;font-size:14px}
+.fg input:focus,.fg select:focus{outline:2px solid var(--blue);outline-offset:-1px;border-color:var(--blue)}
+.sec-label{grid-column:1/-1;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.5px;margin-top:6px;padding-bottom:2px;border-bottom:1px dashed var(--border)}
+.modal-f{display:flex;gap:10px;justify-content:flex-end;padding:15px 20px;border-top:1px solid var(--border)}
+/* misc */
+.notice{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);
+  margin-bottom:16px;font-size:13.5px;display:flex;gap:11px;align-items:flex-start}
+.notice.warn{border-color:var(--yellow);background:color-mix(in srgb,var(--yellow) 8%,var(--surface))}
+.notice .ic{font-size:18px;flex:none}
+.loadmask{text-align:center;padding:60px 20px;color:var(--muted)}
+.spin{width:34px;height:34px;border:3px solid var(--grid);border-top-color:var(--blue);border-radius:50%;
+  animation:sp 1s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.val-item{padding:13px 15px;border:1px solid var(--border);border-radius:12px;margin-bottom:11px;background:var(--surface)}
+.val-item .t{font-weight:700;font-size:14px;margin-bottom:5px;display:flex;gap:8px;align-items:center}
+.val-item .r{font-size:13.5px;color:var(--ink-2);margin-bottom:4px}
+.val-item .n{font-size:12.5px;color:var(--muted)}
+.badge{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:700;flex:none}
+.badge.ok{background:var(--aqua-soft);color:var(--aqua)} .badge.w{background:var(--red-soft);color:var(--red)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;
+  background:var(--ink);color:var(--surface);padding:11px 20px;border-radius:11px;font-size:14px;
+  z-index:99;transition:.25s;pointer-events:none;box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{background:var(--red);color:#fff}
+h2.sect{font-size:16px;margin:22px 0 12px}
+.mini-stat{font-size:12.5px;color:var(--ink-2)}
+.mut{color:var(--muted)}
+
+/* ============================================================
+   PROFESSIONAL UI REFRESH — visual layer only
+   ============================================================ */
+:root{
+  --surface:#ffffff;
+  --surface-2:#f5f8fa;
+  --page:#eef3f5;
+  --ink:#17323d;
+  --ink-2:#526872;
+  --muted:#7c9098;
+  --grid:#e7eef1;
+  --baseline:#d4e0e5;
+  --border:rgba(29,67,80,.11);
+  --blue:#0b7586;
+  --blue-soft:#dceff2;
+  --aqua:#17a47d;
+  --aqua-soft:#dcf5ec;
+  --red:#dc5454;
+  --red-soft:#fde8e7;
+  --green:#169873;
+  --orange:#ed834e;
+  --violet:#7866c9;
+  --yellow:#e5a632;
+  --shadow:0 1px 2px rgba(22,55,65,.03),0 10px 30px rgba(22,55,65,.07);
+  --shadow-lg:0 24px 70px rgba(13,47,59,.18);
+  --radius:18px;
+}
+
+:root[data-theme="dark"],html[data-theme="dark"]{
+  --surface:#17282f;
+  --surface-2:#1d323a;
+  --page:#0d1b21;
+  --ink:#eef7f8;
+  --ink-2:#b7c8cd;
+  --muted:#869ba2;
+  --grid:#284049;
+  --baseline:#35505a;
+  --border:rgba(213,237,242,.11);
+  --blue:#4eb6c7;
+  --blue-soft:#214651;
+  --aqua:#45c59f;
+  --aqua-soft:#193f35;
+  --red:#f07979;
+  --red-soft:#4a292c;
+  --green:#45c59f;
+  --orange:#f49a6b;
+  --violet:#a99bea;
+  --yellow:#f0bd58;
+  --shadow:0 1px 2px rgba(0,0,0,.22),0 14px 36px rgba(0,0,0,.22);
+  --shadow-lg:0 26px 80px rgba(0,0,0,.48);
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --surface:#17282f;
+    --surface-2:#1d323a;
+    --page:#0d1b21;
+    --ink:#eef7f8;
+    --ink-2:#b7c8cd;
+    --muted:#869ba2;
+    --grid:#284049;
+    --baseline:#35505a;
+    --border:rgba(213,237,242,.11);
+    --blue:#4eb6c7;
+    --blue-soft:#214651;
+    --aqua:#45c59f;
+    --aqua-soft:#193f35;
+    --red:#f07979;
+    --red-soft:#4a292c;
+    --green:#45c59f;
+    --orange:#f49a6b;
+    --violet:#a99bea;
+    --yellow:#f0bd58;
+    --shadow:0 1px 2px rgba(0,0,0,.22),0 14px 36px rgba(0,0,0,.22);
+    --shadow-lg:0 26px 80px rgba(0,0,0,.48);
+  }
+}
+
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 8% 0%,color-mix(in srgb,var(--blue) 10%,transparent) 0,transparent 30rem),
+    radial-gradient(circle at 100% 18%,color-mix(in srgb,var(--aqua) 8%,transparent) 0,transparent 28rem),
+    var(--page);
+  font-size:14px;
+  letter-spacing:.005em;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background-image:linear-gradient(rgba(75,117,130,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(75,117,130,.035) 1px,transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(to bottom,#000,transparent 75%);
+}
+
+.wrap{position:relative;max-width:1480px;margin:0 auto;padding:24px 28px 64px}
+
+/* Header */
+header.top{
+  position:relative;
+  isolation:isolate;
+  min-height:104px;
+  margin:0;
+  padding:22px 24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:24px;
+  background:linear-gradient(118deg,#123e4d 0%,#075e6d 55%,#13806f 100%);
+  box-shadow:0 20px 55px rgba(13,75,87,.20);
+  color:#fff;
+}
+header.top::before,header.top::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+}
+header.top::before{width:250px;height:250px;right:18%;top:-190px}
+header.top::after{width:160px;height:160px;right:-38px;bottom:-120px}
+.brand{gap:16px;min-width:0}
+.logo{
+  width:58px;height:58px;border-radius:18px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+  backdrop-filter:blur(8px);
+  font-size:0;
+}
+.logo::before{content:"✚";font-size:28px;font-weight:700;line-height:1;color:#fff}
+.brand h1{font-size:21px;line-height:1.35;font-weight:700;letter-spacing:-.015em;color:#fff}
+.brand p{margin-top:5px;font-size:12.5px;color:rgba(255,255,255,.72)}
+.top-actions{gap:9px}
+.top-actions .chip,.top-actions .btn{
+  min-height:36px;
+  border-color:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.11);
+  color:#fff;
+  backdrop-filter:blur(8px);
+}
+.top-actions .chip{padding:7px 12px;color:rgba(255,255,255,.88)}
+.top-actions .btn:hover{border-color:rgba(255,255,255,.44);background:rgba(255,255,255,.19);color:#fff;transform:translateY(-1px)}
+.dot{box-shadow:0 0 0 4px rgba(255,255,255,.10)}
+.dot.ok{background:#4ce1ad}.dot.err{background:#ff8585}.dot.load{background:#ffd06d}
+
+/* Navigation */
+nav.tabs{
+  position:sticky;
+  top:10px;
+  z-index:20;
+  gap:5px;
+  margin:16px 0 22px;
+  padding:6px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  box-shadow:0 8px 24px rgba(22,55,65,.07);
+  backdrop-filter:blur(14px);
+}
+.tab{
+  flex:1;
+  min-width:max-content;
+  margin:0;
+  padding:10px 14px;
+  border:0;
+  border-radius:11px;
+  color:var(--ink-2);
+  font-size:13.5px;
+  font-weight:600;
+  transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.tab:hover{background:var(--surface-2);color:var(--ink)}
+.tab.active{
+  border:0;
+  background:linear-gradient(135deg,var(--blue),color-mix(in srgb,var(--blue) 72%,var(--aqua)));
+  box-shadow:0 7px 16px color-mix(in srgb,var(--blue) 25%,transparent);
+  color:#fff;
+}
+.tab.active:hover{color:#fff;transform:translateY(-1px)}
+
+/* Shared controls */
+.btn{
+  min-height:38px;
+  padding:8px 14px;
+  border-color:var(--border);
+  border-radius:11px;
+  background:var(--surface);
+  font-weight:600;
+  box-shadow:0 1px 2px rgba(22,55,65,.03);
+  transition:border-color .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.btn:hover{border-color:color-mix(in srgb,var(--blue) 45%,var(--border));background:var(--surface-2);transform:translateY(-1px)}
+.btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--blue),color-mix(in srgb,var(--blue) 70%,var(--aqua)));box-shadow:0 8px 18px color-mix(in srgb,var(--blue) 20%,transparent)}
+.btn.primary:hover{filter:none;background:linear-gradient(135deg,color-mix(in srgb,var(--blue) 88%,#fff),var(--aqua));box-shadow:0 10px 24px color-mix(in srgb,var(--blue) 28%,transparent)}
+.btn.sm{min-height:34px;padding:6px 10px;border-radius:9px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 25%,transparent);outline-offset:2px}
+
+/* Cards and dashboard */
+.card{
+  border-color:var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.grid-kpi{grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.kpi{
+  min-height:134px;
+  padding:19px 18px 17px;
+  background:linear-gradient(150deg,var(--surface) 48%,color-mix(in srgb,var(--surface-2) 82%,var(--blue-soft)));
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.kpi:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--blue) 20%,var(--border));box-shadow:0 16px 38px rgba(22,55,65,.10)}
+.kpi .bar-accent{left:18px;right:18px;top:0;bottom:auto;width:auto;height:3px;border-radius:0 0 8px 8px}
+.kpi .lab{font-size:12.5px;font-weight:600;color:var(--ink-2);white-space:nowrap}
+.kpi .val{margin-top:10px;font-size:27px;line-height:1.1;font-weight:750;letter-spacing:-.035em;color:var(--ink)}
+.kpi .sub{margin-top:7px;line-height:1.4;color:var(--muted)}
+.grid-2,.grid-2b{gap:18px;margin-bottom:18px}
+.grid-2{grid-template-columns:minmax(0,1.45fr) minmax(340px,.75fr)}
+.panel{padding:20px 22px}
+.panel h3{position:relative;margin:0 0 5px;padding-left:12px;font-size:15.5px;letter-spacing:-.01em}
+.panel h3::before{content:"";position:absolute;left:0;top:4px;width:4px;height:16px;border-radius:4px;background:linear-gradient(var(--blue),var(--aqua))}
+.panel .desc{margin-bottom:16px;font-size:12px;line-height:1.6}
+.legend{gap:18px;margin-bottom:12px;font-size:12px}
+.swatch{width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 3px color-mix(in srgb,currentColor 6%,transparent)}
+.svgchart{width:100%;overflow:hidden}
+.svgchart svg{display:block}
+
+/* Records toolbar and data tables */
+.toolbar{
+  gap:9px;
+  margin-bottom:14px;
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--surface);
+  box-shadow:var(--shadow);
+}
+.search{min-width:280px}
+.search input,select.flt,input.flt{
+  min-height:39px;
+  border-color:var(--border);
+  border-radius:10px;
+  background:var(--surface-2);
+  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.search input{padding-left:37px}
+.search input:hover,select.flt:hover,input.flt:hover{border-color:color-mix(in srgb,var(--blue) 32%,var(--border));background:var(--surface)}
+.search input:focus,select.flt:focus,input.flt:focus{border-color:var(--blue);background:var(--surface);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 12%,transparent);outline:0}
+.tablecard{border-radius:18px}
+.tblscroll{scrollbar-width:thin;scrollbar-color:var(--baseline) transparent}
+table{font-size:13px}
+thead th{
+  padding:13px 13px;
+  border-bottom-color:var(--baseline);
+  background:var(--surface-2);
+  color:var(--ink-2);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+thead th:hover{color:var(--blue)}
+tbody td{height:47px;padding:10px 13px;border-bottom-color:var(--grid)}
+tbody tr{transition:background .15s ease}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:color-mix(in srgb,var(--blue-soft) 22%,var(--surface))}
+.tag{padding:4px 9px;border-radius:999px;font-size:11px;line-height:1.3}
+.actbtn{width:31px;height:31px;padding:0;border:1px solid transparent;border-radius:9px;transition:.18s ease}
+.actbtn:hover{border-color:var(--border);background:var(--surface-2);transform:translateY(-1px)}
+.pager{min-height:60px;padding:12px 15px;border-top:1px solid var(--grid);background:color-mix(in srgb,var(--surface-2) 45%,var(--surface))}
+.pg{gap:5px}
+.pg button{min-width:35px;height:35px;border-radius:9px;font-size:12.5px;transition:.18s ease}
+.pg button:not(:disabled):hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.pg button.cur{background:linear-gradient(135deg,var(--blue),var(--aqua));box-shadow:0 5px 12px color-mix(in srgb,var(--blue) 20%,transparent)}
+
+/* Section, validation and status messages */
+h2.sect{margin:24px 2px 14px;font-size:18px;letter-spacing:-.015em}
+.val-item{position:relative;margin-bottom:12px;padding:16px 18px;border-radius:14px;box-shadow:0 5px 18px rgba(22,55,65,.04)}
+.val-item::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--blue)}
+.val-item .t{font-size:14px}.val-item .r{line-height:1.55}.val-item .n{line-height:1.55}
+.badge{padding:3px 9px}
+.notice{padding:15px 17px;border-radius:14px;box-shadow:var(--shadow)}
+.notice.warn{border-color:color-mix(in srgb,var(--yellow) 45%,var(--border));background:color-mix(in srgb,var(--yellow) 8%,var(--surface))}
+
+/* Modal and feedback */
+.overlay{padding:36px 18px;background:rgba(5,24,30,.64);backdrop-filter:blur(7px)}
+.modal{overflow:hidden;border-radius:22px;box-shadow:var(--shadow-lg)}
+.modal-h{padding:18px 22px;background:linear-gradient(90deg,var(--surface),var(--surface-2))}
+.modal-h h3{font-size:18px;letter-spacing:-.01em}
+.modal-b{padding:21px 22px}
+.formgrid{gap:15px 18px}
+.fg{gap:6px}
+.fg label{font-size:12px;font-weight:650}
+.fg input,.fg select{min-height:41px;padding:9px 11px;border-radius:10px;transition:.18s ease}
+.fg input:hover,.fg select:hover{border-color:color-mix(in srgb,var(--blue) 35%,var(--border))}
+.fg input:focus,.fg select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 13%,transparent)}
+.sec-label{margin-top:9px;padding:9px 0 5px;border-bottom:1px solid var(--border);color:var(--blue);letter-spacing:.07em}
+.modal-f{padding:15px 22px;background:var(--surface-2)}
+.toast{bottom:26px;padding:12px 19px;border-radius:12px;box-shadow:0 14px 35px rgba(6,28,35,.25)}
+
+/* Login lock (เฉพาะแท็บรายชื่อผู้ป่วย) */
+.login-lock{display:flex;align-items:center;justify-content:center;padding:36px 16px 20px;min-height:52vh;
+  background:
+    radial-gradient(760px 420px at 20% -20%,color-mix(in srgb,var(--blue) 15%,transparent),transparent 60%),
+    radial-gradient(700px 420px at 110% 120%,color-mix(in srgb,var(--aqua) 13%,transparent),transparent 55%);
+  border-radius:20px}
+.login-card{width:100%;max-width:392px;background:var(--surface);border:1px solid var(--border);
+  border-radius:22px;padding:34px 30px 30px;box-shadow:0 26px 70px rgba(6,28,35,.20);text-align:center}
+.login-logo{width:64px;height:64px;margin:0 auto 14px;border-radius:18px;
+  background:linear-gradient(135deg,var(--blue),var(--aqua));display:flex;align-items:center;
+  justify-content:center;font-size:30px;box-shadow:0 10px 26px color-mix(in srgb,var(--blue) 32%,transparent)}
+.login-card h2{margin:0 0 6px;font-size:21px;letter-spacing:-.015em}
+.login-sub{margin:0 0 22px;font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.login-fg{text-align:left;margin-bottom:14px;display:flex;flex-direction:column;gap:6px}
+.login-fg label{font-size:12px;font-weight:650;color:var(--ink-2)}
+.login-fg input{min-height:44px;padding:10px 13px;border:1px solid var(--border);border-radius:11px;
+  background:var(--surface-2);color:var(--ink);font-family:inherit;font-size:15px;transition:.18s ease}
+.login-fg input:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 14%,transparent)}
+.login-err{min-height:18px;margin:-4px 0 12px;font-size:12.5px;color:var(--red);font-weight:600;text-align:left}
+.login-btn{width:100%;justify-content:center;min-height:46px;font-size:15.5px;font-weight:650;margin-top:4px}
+/* toggle: ล็อกอินแล้วจึงเห็นเนื้อหา */
+#recordsContent{display:none}
+body.authed #recordsContent{display:block}
+body.authed #recordsLock{display:none}
+#logoutBtn{display:none}
+body.authed #logoutBtn{display:inline-flex}
+
+@media(max-width:1240px){
+  .grid-kpi{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .wrap{padding:18px 18px 52px}
+  .grid-2,.grid-2b{grid-template-columns:1fr}
+  nav.tabs{overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;scrollbar-width:none}
+  nav.tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto}
+}
+@media(max-width:680px){
+  .wrap{padding:12px 12px 42px}
+  header.top{align-items:flex-start;padding:18px;border-radius:19px}
+  .brand{align-items:flex-start}
+  .logo{width:48px;height:48px;border-radius:14px}
+  .logo::before{font-size:23px}
+  .brand h1{font-size:17px}
+  .brand p{font-size:11.5px;line-height:1.55}
+  .top-actions{width:100%;margin-left:0}
+  .top-actions .chip{margin-right:auto}
+  nav.tabs{top:6px;margin:12px 0 16px;border-radius:14px}
+  .grid-kpi{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kpi{min-height:128px;padding:17px 14px 15px}
+  .kpi .lab{white-space:normal;font-size:11.5px}
+  .kpi .val{font-size:24px}
+  .kpi .sub{font-size:11px}
+  .panel{padding:17px 15px}
+  .toolbar{padding:10px}
+  .toolbar>*{flex:1 1 145px}
+  .search{min-width:100%;flex-basis:100%}
+  .toolbar .btn{justify-content:center}
+  .pager{justify-content:center}
+  .pager .info{width:100%;text-align:center}
+  .modal{border-radius:18px}
+  .modal-b{padding:18px 16px}
+  .modal-h,.modal-f{padding-left:16px;padding-right:16px}
+}
+@media(max-width:420px){
+  .grid-kpi{grid-template-columns:1fr}
+  .kpi{min-height:118px}
+  .top-actions .chip{width:100%;margin:0}
+  .top-actions .btn{flex:1;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="logo">🩺</div>
+      <div>
+        <h1>แดชบอร์ดคัดกรองพยาธิใบไม้ในตับ (OV)</h1>
+        <p>อำเภอเสลภูมิ จังหวัดร้อยเอ็ด • ปีงบประมาณ 2569 • M-Lab (21–22 มิ.ย.) + MDT (30 มิ.ย.)</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="chip" id="statusChip"><span class="dot load" id="statusDot"></span><span id="statusTxt">กำลังเชื่อมต่อ…</span></span>
+      <button class="btn sm" id="themeBtn" title="สลับธีม">🌓 ธีม</button>
+      <button class="btn sm" id="refreshBtn">↻ รีเฟรช</button>
+      <button class="btn sm" id="logoutBtn" title="ออกจากระบบ">⎋ ออกจากระบบ</button>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-view="dash">📊 ภาพรวม</button>
+    <button class="tab" data-view="records">📋 ข้อมูลรายบุคคล</button>
+    <button class="tab" data-view="units">🏥 สรุปรายหน่วยบริการ</button>
+    <button class="tab" data-view="ages">👥 ตามกลุ่มอายุ</button>
+    <button class="tab" data-view="valid">✅ การตรวจสอบข้อมูล</button>
+  </nav>
+
+  <div id="bootError"></div>
+
+  <!-- DASHBOARD -->
+  <section class="view active" id="view-dash">
+    <div class="grid-kpi" id="kpis"></div>
+    <div class="grid-2">
+      <div class="card panel">
+        <h3>อัตราผลบวกรายหน่วยบริการ</h3>
+        <p class="desc">เรียงจากอัตราความชุกสูงสุด • แท่งพื้น = ผู้ตรวจทั้งหมด, แท่งเข้ม = ผลบวก</p>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-soft)"></i> ตรวจคัดกรอง</span>
+          <span><i class="swatch" style="background:var(--red)"></i> ผลบวก (พบพยาธิ)</span>
+        </div>
+        <div id="unitChart" class="svgchart"></div>
+      </div>
+      <div class="card panel">
+        <h3>สัดส่วนผลตรวจ & เพศ</h3>
+        <p class="desc">ภาพรวมทั้งหมด</p>
+        <div id="donuts"></div>
+      </div>
+    </div>
+    <div class="grid-2b">
+      <div class="card panel">
+        <h3>อัตราผลบวกตามกลุ่มอายุ</h3>
+        <p class="desc">แท่ง = ร้อยละผลบวกในกลุ่ม • ตัวเลขบน = จำนวนผู้ตรวจ</p>
+        <div id="ageChart" class="svgchart"></div>
+      </div>
+      <div class="card panel">
+        <h3>เปรียบเทียบกิจกรรม M-Lab vs MDT</h3>
+        <p class="desc">จำนวนตรวจ ผลบวก และการได้รับยา</p>
+        <div id="actChart"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECORDS -->
+  <section class="view" id="view-records">
+    <!-- Login card (แสดงเมื่อยังไม่ล็อกอิน) -->
+    <div class="login-lock" id="recordsLock">
+      <form class="login-card" id="loginForm" autocomplete="off">
+        <div class="login-logo">🔒</div>
+        <h2>ต้องเข้าสู่ระบบก่อน</h2>
+        <p class="login-sub">รายชื่อผู้ป่วยเป็นข้อมูลส่วนบุคคล<br>กรุณาเข้าสู่ระบบเพื่อดู เพิ่ม แก้ไข หรือลบข้อมูลรายบุคคล</p>
+        <div class="login-fg">
+          <label>ชื่อผู้ใช้ (Username)</label>
+          <input id="loginUser" type="text" placeholder="admin" autocomplete="username">
+        </div>
+        <div class="login-fg">
+          <label>รหัสผ่าน (Password)</label>
+          <input id="loginPass" type="password" placeholder="••••" autocomplete="current-password">
+        </div>
+        <div class="login-err" id="loginErr"></div>
+        <button class="btn primary login-btn" type="submit">เข้าสู่ระบบ →</button>
+      </form>
+    </div>
+    <!-- เนื้อหารายชื่อ (แสดงเมื่อล็อกอินแล้ว) -->
+    <div id="recordsContent">
+      <div class="toolbar">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="q" placeholder="ค้นหา ชื่อ / นามสกุล / เลขบัตร / หน่วยบริการ …">
+        </div>
+        <select class="flt" id="fAct"><option value="">กิจกรรม: ทั้งหมด</option></select>
+        <select class="flt" id="fUnit"><option value="">หน่วยบริการ: ทั้งหมด</option></select>
+        <select class="flt" id="fResult"><option value="">ผลตรวจ: ทั้งหมด</option><option value="positive">positive</option><option value="negative">negative</option></select>
+        <select class="flt" id="fSex"><option value="">เพศ: ทั้งหมด</option><option value="ชาย">ชาย</option><option value="หญิง">หญิง</option></select>
+        <button class="btn primary" id="addBtn">＋ เพิ่มข้อมูล</button>
+      </div>
+      <div class="card tablecard">
+        <div class="tblscroll">
+          <table id="tbl">
+            <thead><tr id="thead"></tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <div class="info" id="pageInfo"></div>
+          <div class="pg" id="pager"></div>
+          <select class="flt" id="pageSize"><option>25</option><option>50</option><option>100</option><option>200</option></select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNITS -->
+  <section class="view" id="view-units">
+    <h2 class="sect">สรุปผลตรวจคัดกรอง OV รายหน่วยบริการ <span class="mut" style="font-weight:400;font-size:13px">(คำนวณสดจากข้อมูลรายบุคคล)</span></h2>
+    <div class="card tablecard"><div class="tblscroll"><table id="unitTbl"></table></div></div>
+  </section>
+
+  <!-- AGES -->
+  <section class="view" id="view-ages">
+    <h2 class="sect">สรุปผลตรวจ OV จำแนกตามกลุ่มอายุ</h2>
+    <div class="card tablecard"><div class="tblscroll"><table id="ageTbl"></table></div></div>
+  </section>
+
+  <!-- VALIDATION -->
+  <section class="view" id="view-valid">
+    <h2 class="sect">การตรวจสอบความถูกต้องของข้อมูล (Validate 3 รอบ) และประเด็นที่พบ</h2>
+    <div id="validList"></div>
+  </section>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-h">
+      <h3 id="modalTitle">เพิ่มข้อมูล</h3>
+      <button class="actbtn" id="closeModal" style="font-size:20px">✕</button>
+    </div>
+    <div class="modal-b"><div class="formgrid" id="formGrid"></div></div>
+    <div class="modal-f">
+      <button class="btn" id="cancelBtn">ยกเลิก</button>
+      <button class="btn primary" id="saveBtn">บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="overlay" id="delOverlay">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-h"><h3>ยืนยันการลบ</h3></div>
+    <div class="modal-b"><p id="delMsg" style="margin:0">คุณต้องการลบข้อมูลรายการนี้หรือไม่?</p></div>
+    <div class="modal-f">
+      <button class="btn" id="delCancel">ยกเลิก</button>
+      <button class="btn danger" id="delConfirm">ลบข้อมูล</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   CONFIG — URL ของ Google Apps Script Web App (ใส่ให้แล้ว)
+   ============================================================ */
+const GAS_URL = "https://script.google.com/macros/s/AKfycbwi30qnWSE7V0M1DCQul0rlmw96FqhE-QgjWCDb7KWQsMb8sLAJ4v-OH4R_TISKTtbM/exec";
+
+/* ---- schema ของคอลัมน์ (29 คอลัมน์ตามไฟล์ต้นฉบับ) ---- */
+const FIELDS = [
+  {k:"ลำดับ", t:"number", sec:"ข้อมูลทั่วไป", auto:true},
+  {k:"กิจกรรม", t:"select", opt:["M-Lab","MDT"], sec:"ข้อมูลทั่วไป"},
+  {k:"หน่วยบริการ", t:"datalist", src:"units", sec:"ข้อมูลทั่วไป"},
+  {k:"CHECKUP NO.", t:"text", sec:"ข้อมูลทั่วไป"},
+  {k:"รหัสสถานบริการ", t:"text", sec:"ข้อมูลทั่วไป"},
+  {k:"เลขบัตรประชาชน", t:"text", sec:"ข้อมูลบุคคล", maxlength:13},
+  {k:"คำนำหน้า", t:"datalist", src:"titles", sec:"ข้อมูลบุคคล"},
+  {k:"ชื่อ", t:"text", sec:"ข้อมูลบุคคล"},
+  {k:"นามสกุล", t:"text", sec:"ข้อมูลบุคคล"},
+  {k:"วันเกิด", t:"text", ph:"วว/ดด/ปปปป (พ.ศ.)", sec:"ข้อมูลบุคคล"},
+  {k:"อายุ", t:"number", sec:"ข้อมูลบุคคล"},
+  {k:"เพศ", t:"select", opt:["ชาย","หญิง"], sec:"ข้อมูลบุคคล"},
+  {k:"เบอร์โทร", t:"text", sec:"ข้อมูลบุคคล"},
+  {k:"หมู่", t:"text", sec:"ที่อยู่"},
+  {k:"ตำบล", t:"datalist", src:"tambons", sec:"ที่อยู่"},
+  {k:"อำเภอ", t:"text", def:"เสลภูมิ", sec:"ที่อยู่"},
+  {k:"จังหวัด", t:"text", def:"ร้อยเอ็ด", sec:"ที่อยู่"},
+  {k:"เคยตรวจพบพยาธิ", t:"select", opt:["ไม่","ใช่"], sec:"ประวัติเสี่ยง"},
+  {k:"เคยรักษา", t:"select", opt:["ไม่","ใช่"], sec:"ประวัติเสี่ยง"},
+  {k:"เคยกินดิบ", t:"select", opt:["ใช่","ไม่"], sec:"ประวัติเสี่ยง"},
+  {k:"น้ำหนัก", t:"text", sec:"ประวัติเสี่ยง"},
+  {k:"สิทธิ", t:"datalist", src:"rights", sec:"ประวัติเสี่ยง"},
+  {k:"ผลตรวจ OV", t:"select", opt:["negative","positive"], sec:"ผลตรวจ & การรักษา"},
+  {k:"ได้รับยา", t:"select", opt:["ไม่","ใช่"], sec:"ผลตรวจ & การรักษา"},
+  {k:"จำนวนยา", t:"number", def:"0", sec:"ผลตรวจ & การรักษา"},
+  {k:"เหตุผลไม่รับยา", t:"text", def:"-", sec:"ผลตรวจ & การรักษา"},
+  {k:"สถานะ", t:"datalist", src:"status", def:"ลงผลแล้ว", sec:"ผลตรวจ & การรักษา"},
+  {k:"วันลงทะเบียน", t:"text", ph:"วว/ดด/ปปปป", sec:"ผลตรวจ & การรักษา"},
+  {k:"วันตรวจ", t:"text", ph:"วว/ดด/ปปปป", sec:"ผลตรวจ & การรักษา"},
+];
+const TABLE_COLS = ["ลำดับ","กิจกรรม","หน่วยบริการ","คำนำหน้า","ชื่อ","นามสกุล","เพศ","อายุ","ตำบล","ผลตรวจ OV","ได้รับยา","สิทธิ"];
+const DATALIST = {
+  units:["บ้านดงหวาย","รพ.สต.ท่าม่วง","รพ.สต.บ้านกกทัน","รพ.สต.บ้านนาเมือง","รพ.สต.บ้านบะหลวง","รพ.สต.บ้านป่าขี","รพ.สต.บ้านใหม่สามัคคี","รพ.สต.บ้านไคร่นุ่น","รพ.เสลภูมิ","รพ.สต.บ้านนาวี","รพ.สต.บ้านมะหรี่","รพ.สต.บ้านหนองจอก","รพ.สต.บ้านหวาย","รพ.สต.ห้วยสามัคคี"],
+  titles:["นาง","นาย","น.ส.","นางสาว","พระ","ร.ต."],
+  tambons:["เกาะแก้ว","ท่าม่วง","วังหลวง","นาเมือง","หนองหลวง","นาแซง","กลาง","ศรีวิลัย","ภูเงิน","เหล่าน้อย","ขวัญเมือง"],
+  rights:["บัตรทอง","ข้าราชการ","ประกันสังคม"],
+  status:["ลงผลแล้ว"]
+};
+const AGE_BINS = [
+  {lab:"15-19",min:15,max:19},{lab:"20-29",min:20,max:29},{lab:"30-39",min:30,max:39},
+  {lab:"40-49",min:40,max:49},{lab:"50-59",min:50,max:59},{lab:"60-69",min:60,max:69},
+  {lab:"70 ปีขึ้นไป",min:70,max:999}
+];
+const VALIDATION = [
+  {t:"รอบที่ 1: ความครบถ้วนของระเบียน",ok:true,r:"อ่านครบ 14 ไฟล์ ดึงระเบียนผู้ป่วยได้ 4,834 ราย (M-Lab 3,489 / MDT 1,345) ผลตรวจครบทุกราย (positive/negative)",n:"คัดแยกแถวสรุป/ท้ายตารางออก 35 แถว (ส่วนสรุปของไฟล์ MDT)"},
+  {t:"รอบที่ 1: เทียบยอดสรุปหัวตาราง (M-Lab)",ok:false,r:"ยอด \"จำนวนตรวจ/ผลบวก/ร้อยละ\" ที่พิมพ์หัวตารางตรงกับที่นับจริง 8 ใน 9 ไฟล์",n:"พบ 1 ไฟล์ไม่ตรง (รพ.เสลภูมิ)"},
+  {t:"รอบที่ 2: เทียบยอดสรุปท้ายตาราง (MDT)",ok:true,r:"ยอดสรุปท้ายตาราง (ทั้งหมด/ติดเชื้อ/ไม่ติดเชื้อ) ตรงกับที่นับจริง ครบทั้ง 5 ไฟล์ 100%",n:"ข้อมูล MDT สอดคล้องสมบูรณ์"},
+  {t:"รอบที่ 3: คุณภาพข้อมูลรายบุคคล",ok:true,r:"เลขบัตรประชาชน 13 หลักถูกต้องทุกราย, ไม่มีเลขซ้ำภายใน/ข้ามไฟล์ → บุคคลไม่ซ้ำ 4,834 ราย, อายุ 15–91 ปี",n:"ข้อมูลไม่มีรายการซ้ำซ้อน"},
+  {t:"ประเด็นที่ 1: รพ.เสลภูมิ ยอดหัวตารางคลาดเคลื่อน",ok:false,r:"หัวตารางระบุ \"ผลบวก 55 ราย (34.6%)\" แต่ข้อมูลจริงมี 50 ราย (31.45%)",n:"รายงานใช้ค่าที่นับจริง = 50 ราย ควรแก้ไขไฟล์ต้นทาง"},
+  {t:"ประเด็นที่ 2: ช่อง \"จำนวนยา (เม็ด)\"",ok:false,r:"บันทึกเป็น 0 ทุกราย แม้แต่รายที่ระบุ \"ได้รับยา = ใช่\"",n:"ใช้ช่อง \"ได้รับยา (ใช่/ไม่)\" เป็นตัวชี้วัดแทน"},
+  {t:"ประเด็นที่ 3: การจ่ายยากลุ่ม MDT",ok:true,r:"ผู้มีผลบวกกลุ่ม MDT (174 ราย) บันทึก \"ได้รับยา = ไม่\" ทุกราย",n:"MDT เป็นการคัดกรอง ยังไม่จ่ายยาในวันตรวจ (นัดจ่ายภายหลัง)"},
+  {t:"ประเด็นที่ 4: ผลบวกกลุ่ม M-Lab ที่ยังไม่ได้รับยา",ok:false,r:"มี 7 ราย ผลบวกแต่ \"ได้รับยา = ไม่\" และไม่ได้ระบุเหตุผล",n:"ควรติดตามจ่ายยา/บันทึกเหตุผลเพิ่มเติม"},
+  {t:"ประเด็นที่ 5: ปัจจัยเสี่ยง",ok:true,r:"ทุกราย (4,834) บันทึก \"เคยกินดิบ = ใช่\"; เคยตรวจพบพยาธิ 3 ราย; เคยรักษา 4 ราย",n:"ข้อมูลประวัติเสี่ยงถูกกรอกค่าเดียวเกือบทั้งหมด"},
+];
+
+/* ============ STATE ============ */
+let RECORDS = [];
+let VIEWFILTER = [];
+let page = 1, pageSize = 25, sortKey = "ลำดับ", sortDir = 1;
+let editingRow = null, deletingRow = null;
+
+/* ============ HELPERS ============ */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const num = n => (isFinite(n)? Number(n):0).toLocaleString('th-TH');
+const pct = (a,b) => b? (a/b*100) : 0;
+const fx = (n,d=2) => (isFinite(n)?n:0).toFixed(d);
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function toast(msg, err){
+  const t=$('#toast'); t.textContent=msg; t.className='toast show'+(err?' err':'');
+  setTimeout(()=>t.className='toast'+(err?' err':''),2600);
+}
+function setStatus(state, txt){
+  $('#statusDot').className='dot '+state; $('#statusTxt').textContent=txt;
+}
+
+/* ---- fetch() GET (CORS) — เร็วสุด เบราว์เซอร์บีบ gzip อัตโนมัติ ---- */
+async function fetchJSON(){
+  const ctrl=new AbortController();
+  const to=setTimeout(()=>ctrl.abort(),60000);
+  try{
+    const res=await fetch(GAS_URL+(GAS_URL.includes('?')?'&':'?')+'t='+Date.now(),
+      {signal:ctrl.signal, redirect:'follow', headers:{'Accept':'application/json'}});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    return await res.json();
+  } finally { clearTimeout(to); }
+}
+/* ---- JSONP GET (สำรอง เผื่อ fetch ติด CORS/เครือข่าย) ---- */
+let jn=0;
+function jsonp(){
+  return new Promise((res,rej)=>{
+    const cb='__ovcb'+(jn++);
+    const s=document.createElement('script');
+    const to=setTimeout(()=>{cleanup();rej(new Error('หมดเวลาเชื่อมต่อ (JSONP)'))},60000);
+    function cleanup(){clearTimeout(to);delete window[cb];s.remove();}
+    window[cb]=d=>{cleanup();res(d);};
+    s.onerror=()=>{cleanup();rej(new Error('เชื่อมต่อไม่สำเร็จ'));};
+    s.src=GAS_URL+(GAS_URL.includes('?')?'&':'?')+'callback='+cb+'&t='+Date.now();
+    document.body.appendChild(s);
+  });
+}
+/* ---- แปลงข้อมูล: รองรับรูปแบบใหม่ rows[] และเก่า records[] ---- */
+function toRecords(data){
+  if(data && data.rows){
+    const h=data.headers||[];
+    return data.rows.map(row=>{
+      const o={_row:row[0]};
+      for(let i=0;i<h.length;i++){ if(h[i]) o[h[i]]=row[i+1]; }
+      return o;
+    });
+  }
+  return (data && data.records) || [];
+}
+/* ---- POST (text/plain = simple request, ไม่ติด CORS preflight) ---- */
+async function postAction(payload){
+  const res = await fetch(GAS_URL,{
+    method:'POST', redirect:'follow',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)
+  });
+  const txt = await res.text();
+  try { return JSON.parse(txt); } catch(e){ return {ok:true,raw:txt}; }
+}
+
+/* ============ LOAD ============ */
+async function loadData(){
+  setStatus('load','กำลังโหลดข้อมูล…');
+  try{
+    let r;
+    try { r = await fetchJSON(); }
+    catch(e){ setStatus('load','กำลังโหลด (โหมดสำรอง)…'); r = await jsonp(); }
+    if(!r || !r.ok) throw new Error((r&&r.error)||'รูปแบบข้อมูลไม่ถูกต้อง');
+    RECORDS = toRecords(r.data);
+    setStatus('ok', 'เชื่อมต่อแล้ว • '+num(RECORDS.length)+' ราย');
+    $('#bootError').innerHTML='';
+    renderAll();
+  }catch(err){
+    setStatus('err','เชื่อมต่อไม่สำเร็จ');
+    $('#bootError').innerHTML =
+      '<div class="notice warn"><span class="ic">⚠️</span><div>'+
+      '<b>ยังเชื่อมต่อ Google Sheets ไม่ได้:</b> '+esc(err.message)+'<br>'+
+      'ตรวจสอบว่า (1) นำโค้ด <code>Code.gs</code> ไป Deploy เป็น Web app แล้ว '+
+      '(2) ตั้งค่า <b>Who has access = Anyone</b> (3) ชีตข้อมูลชื่อ <b>ข้อมูลรวมรายบุคคล</b> '+
+      'และ URL ในไฟล์ตรงกับ deployment ล่าสุด</div></div>';
+    console.error(err);
+  }
+}
+
+/* ============ AGGREGATION ============ */
+const isPos = r => String(r["ผลตรวจ OV"]).toLowerCase()==='positive';
+const isMale = r => String(r["เพศ"]).trim()==='ชาย';
+const gotDrug = r => String(r["ได้รับยา"]).trim()==='ใช่';
+
+function overview(){
+  const R=RECORDS, tot=R.length;
+  const pos=R.filter(isPos).length, neg=tot-pos;
+  const male=R.filter(isMale).length, female=tot-male;
+  const posMale=R.filter(r=>isPos(r)&&isMale(r)).length;
+  const posFemale=pos-posMale;
+  const drug=R.filter(r=>isPos(r)&&gotDrug(r)).length;
+  const ml=R.filter(r=>r["กิจกรรม"]==='M-Lab');
+  const mdt=R.filter(r=>r["กิจกรรม"]==='MDT');
+  const mlPos=ml.filter(isPos).length, mlDrug=ml.filter(r=>isPos(r)&&gotDrug(r)).length;
+  const mdtPos=mdt.filter(isPos).length, mdtDrug=mdt.filter(r=>isPos(r)&&gotDrug(r)).length;
+  return {tot,pos,neg,male,female,posMale,posFemale,drug,
+    ml:ml.length,mdt:mdt.length,mlPos,mlDrug,mdtPos,mdtDrug};
+}
+function byUnit(){
+  const m=new Map();
+  RECORDS.forEach(r=>{
+    const u=r["หน่วยบริการ"]||'(ไม่ระบุ)';
+    if(!m.has(u)) m.set(u,{unit:u,act:r["กิจกรรม"],tambon:r["ตำบล"],date:r["วันตรวจ"],
+      tot:0,pos:0,male:0,female:0,posMale:0,posFemale:0,drug:0,ageSum:0,ageN:0});
+    const o=m.get(u); o.tot++;
+    if(isPos(r)) o.pos++;
+    if(isMale(r)){o.male++; if(isPos(r))o.posMale++;} else {o.female++; if(isPos(r))o.posFemale++;}
+    if(isPos(r)&&gotDrug(r)) o.drug++;
+    const a=parseFloat(r["อายุ"]); if(isFinite(a)){o.ageSum+=a;o.ageN++;}
+  });
+  return Array.from(m.values()).map(o=>({...o,neg:o.tot-o.pos,rate:pct(o.pos,o.tot),
+    age:o.ageN?o.ageSum/o.ageN:0}));
+}
+function byAge(){
+  return AGE_BINS.map(b=>{
+    const inb=RECORDS.filter(r=>{const a=parseFloat(r["อายุ"]);return isFinite(a)&&a>=b.min&&a<=b.max;});
+    const pos=inb.filter(isPos).length;
+    return {lab:b.lab,tot:inb.length,pos,neg:inb.length-pos,rate:pct(pos,inb.length)};
+  });
+}
+
+/* ============ RENDER: KPIs ============ */
+function renderKPIs(){
+  const o=overview();
+  const cards=[
+    {c:'blue',lab:'👥 ผู้เข้ารับการตรวจทั้งหมด',val:num(o.tot),sub:`M-Lab ${num(o.ml)} • MDT ${num(o.mdt)}`},
+    {c:'red',lab:'🦠 ผลบวก (พบพยาธิ)',val:num(o.pos),sub:`ความชุกรวม ${fx(pct(o.pos,o.tot))}%`},
+    {c:'aqua',lab:'✅ ผลลบ (negative)',val:num(o.neg),sub:`${fx(pct(o.neg,o.tot))}% ของผู้ตรวจ`},
+    {c:'violet',lab:'💊 ผลบวกที่ได้รับยา',val:num(o.drug),sub:`${fx(pct(o.drug,o.pos))}% ของผลบวก`},
+    {c:'orange',lab:'♀️ เพศหญิง / ♂️ ชาย',val:num(o.female)+' / '+num(o.male),sub:`บวกหญิง ${num(o.posFemale)} • บวกชาย ${num(o.posMale)}`},
+    {c:'green',lab:'📈 อัตราความชุก',val:fx(pct(o.pos,o.tot))+'%',sub:`บวกชาย ${fx(pct(o.posMale,o.male))}% • บวกหญิง ${fx(pct(o.posFemale,o.female))}%`},
+  ];
+  $('#kpis').innerHTML=cards.map(c=>`
+    <div class="card kpi ${c.c}"><div class="bar-accent"></div>
+      <div class="lab">${c.lab}</div>
+      <div class="val">${c.val}</div>
+      <div class="sub">${c.sub}</div>
+    </div>`).join('');
+}
+
+/* ============ RENDER: unit horizontal bar chart ============ */
+function renderUnitChart(){
+  const data=byUnit().sort((a,b)=>b.rate-a.rate);
+  const W=560, rowH=30, padL=150, padR=54, top=6;
+  const H=top+data.length*rowH+6;
+  const maxTot=Math.max(...data.map(d=>d.tot),1);
+  const bw=W-padL-padR;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:100%" role="img">`;
+  data.forEach((d,i)=>{
+    const y=top+i*rowH;
+    const wt=bw*d.tot/maxTot, wp=bw*d.pos/maxTot;
+    s+=`<g class="rowbar"><title>${esc(d.unit)} — ตรวจ ${num(d.tot)} • ผลบวก ${num(d.pos)} (${fx(d.rate)}%)</title>`;
+    s+=`<text x="${padL-8}" y="${y+15}" text-anchor="end" font-size="11.5" fill="var(--ink-2)">${esc(d.unit.length>18?d.unit.slice(0,17)+'…':d.unit)}</text>`;
+    s+=`<rect x="${padL}" y="${y+5}" width="${wt}" height="16" rx="4" fill="var(--blue-soft)"/>`;
+    s+=`<rect x="${padL}" y="${y+5}" width="${wp}" height="16" rx="4" fill="var(--red)"/>`;
+    s+=`<text x="${padL+wt+6}" y="${y+17}" font-size="11" font-weight="700" fill="var(--red)">${fx(d.rate,1)}%</text>`;
+    s+=`</g>`;
+  });
+  s+=`</svg>`;
+  $('#unitChart').innerHTML=s;
+}
+
+/* ============ RENDER: donuts (result + sex) ============ */
+function donut(cx,cy,r,parts){ // parts:[{v,color}]
+  const tot=parts.reduce((a,p)=>a+p.v,0)||1; let ang=-Math.PI/2, out='';
+  const th=26;
+  parts.forEach(p=>{
+    const a2=ang+p.v/tot*Math.PI*2;
+    const x1=cx+r*Math.cos(ang), y1=cy+r*Math.sin(ang);
+    const x2=cx+r*Math.cos(a2), y2=cy+r*Math.sin(a2);
+    const large=(a2-ang)>Math.PI?1:0;
+    out+=`<path d="M${x1} ${y1} A${r} ${r} 0 ${large} 1 ${x2} ${y2}" fill="none" stroke="${p.color}" stroke-width="${th}"/>`;
+    ang=a2;
+  });
+  return out;
+}
+function renderDonuts(){
+  const o=overview();
+  const d1=donut(70,70,52,[{v:o.pos,color:'var(--red)'},{v:o.neg,color:'var(--aqua)'}]);
+  const d2=donut(70,70,52,[{v:o.female,color:'var(--violet)'},{v:o.male,color:'var(--blue)'}]);
+  $('#donuts').innerHTML=`
+   <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-around">
+    <div style="text-align:center">
+      <svg viewBox="0 0 140 140" width="150" height="150">${d1}
+        <text x="70" y="66" text-anchor="middle" font-size="22" font-weight="700" fill="var(--ink)">${fx(pct(o.pos,o.tot),1)}%</text>
+        <text x="70" y="84" text-anchor="middle" font-size="10.5" fill="var(--muted)">ผลบวก</text></svg>
+      <div class="legend" style="justify-content:center;margin-top:2px">
+        <span><i class="swatch" style="background:var(--red)"></i>บวก ${num(o.pos)}</span>
+        <span><i class="swatch" style="background:var(--aqua)"></i>ลบ ${num(o.neg)}</span></div>
+    </div>
+    <div style="text-align:center">
+      <svg viewBox="0 0 140 140" width="150" height="150">${d2}
+        <text x="70" y="66" text-anchor="middle" font-size="22" font-weight="700" fill="var(--ink)">${fx(pct(o.female,o.tot),0)}%</text>
+        <text x="70" y="84" text-anchor="middle" font-size="10.5" fill="var(--muted)">หญิง</text></svg>
+      <div class="legend" style="justify-content:center;margin-top:2px">
+        <span><i class="swatch" style="background:var(--violet)"></i>หญิง ${num(o.female)}</span>
+        <span><i class="swatch" style="background:var(--blue)"></i>ชาย ${num(o.male)}</span></div>
+    </div>
+   </div>`;
+}
+
+/* ============ RENDER: age bar chart ============ */
+function renderAgeChart(){
+  const data=byAge();
+  const W=520,H=230,padL=38,padB=42,padT=22,padR=12;
+  const cw=W-padL-padR, ch=H-padB-padT;
+  const maxRate=Math.max(...data.map(d=>d.rate),10);
+  const bw=cw/data.length*0.6, gap=cw/data.length;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:100%">`;
+  [0,.25,.5,.75,1].forEach(t=>{const y=padT+ch*(1-t);
+    s+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--grid)"/>`;
+    s+=`<text x="${padL-6}" y="${y+3}" text-anchor="end" font-size="10" fill="var(--muted)">${fx(maxRate*t,0)}</text>`;});
+  data.forEach((d,i)=>{
+    const x=padL+gap*i+(gap-bw)/2;
+    const h=ch*d.rate/maxRate, y=padT+ch-h;
+    s+=`<g class="rowbar"><title>${d.lab} ปี — ตรวจ ${num(d.tot)} • ผลบวก ${num(d.pos)} (${fx(d.rate)}%)</title>`;
+    s+=`<rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="4" fill="var(--blue)"/>`;
+    s+=`<text x="${x+bw/2}" y="${y-4}" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)">${fx(d.rate,1)}%</text>`;
+    s+=`<text x="${x+bw/2}" y="${y-15}" text-anchor="middle" font-size="9" fill="var(--muted)">n=${num(d.tot)}</text>`;
+    s+=`<text x="${x+bw/2}" y="${padT+ch+15}" text-anchor="middle" font-size="10" fill="var(--ink-2)">${d.lab}</text>`;
+    s+=`</g>`;
+  });
+  s+=`<text x="${padL-6}" y="${padT+ch+30}" text-anchor="end" font-size="9.5" fill="var(--muted)">%</text>`;
+  s+=`</svg>`;
+  $('#ageChart').innerHTML=s;
+}
+
+/* ============ RENDER: activity compare ============ */
+function renderActChart(){
+  const o=overview();
+  const rows=[
+    {lab:'จำนวนตรวจ',ml:o.ml,mdt:o.mdt},
+    {lab:'ผลบวก',ml:o.mlPos,mdt:o.mdtPos},
+    {lab:'ได้รับยา',ml:o.mlDrug,mdt:o.mdtDrug},
+  ];
+  const max=Math.max(o.ml,o.mdt,1);
+  let h=`<div class="legend"><span><i class="swatch" style="background:var(--blue)"></i>M-Lab</span>
+     <span><i class="swatch" style="background:var(--violet)"></i>MDT</span></div>`;
+  rows.forEach(r=>{
+    h+=`<div style="margin:11px 0 13px"><div style="font-size:12.5px;color:var(--ink-2);margin-bottom:5px;font-weight:500">${r.lab}</div>`;
+    h+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+        <div style="flex:1;background:var(--surface-2);border-radius:6px;overflow:hidden;height:20px">
+          <div style="width:${r.ml/max*100}%;background:var(--blue);height:100%;border-radius:6px"></div></div>
+        <b style="font-size:12.5px;width:56px;text-align:right;font-variant-numeric:tabular-nums">${num(r.ml)}</b></div>`;
+    h+=`<div style="display:flex;align-items:center;gap:8px">
+        <div style="flex:1;background:var(--surface-2);border-radius:6px;overflow:hidden;height:20px">
+          <div style="width:${r.mdt/max*100}%;background:var(--violet);height:100%;border-radius:6px"></div></div>
+        <b style="font-size:12.5px;width:56px;text-align:right;font-variant-numeric:tabular-nums">${num(r.mdt)}</b></div></div>`;
+  });
+  h+=`<p class="mini-stat mut" style="margin-top:12px">หมายเหตุ: กลุ่ม MDT เป็นการคัดกรอง ยังไม่จ่ายยาในวันตรวจ (นัดจ่ายภายหลัง) จึงมี "ได้รับยา = 0"</p>`;
+  $('#actChart').innerHTML=h;
+}
+
+/* ============ RENDER: units table ============ */
+function renderUnitsTable(){
+  const d=byUnit().sort((a,b)=>b.tot-a.tot);
+  const o=overview();
+  let h=`<thead><tr>
+    <th class="n">หน่วยบริการ</th><th class="n">กิจกรรม</th><th class="n">ตำบล</th>
+    <th>ตรวจ</th><th>ผลบวก</th><th>ผลลบ</th><th>%บวก</th><th>ชาย</th><th>หญิง</th>
+    <th>บวก-ช</th><th>บวก-ญ</th><th>ได้ยา</th><th>อายุเฉลี่ย</th></tr></thead><tbody>`;
+  d.forEach(r=>{
+    h+=`<tr><td class="n">${esc(r.unit)}</td>
+      <td class="n"><span class="tag ${r.act==='M-Lab'?'ml':'mdt'}">${esc(r.act)}</span></td>
+      <td class="n">${esc(r.tambon||'')}</td>
+      <td>${num(r.tot)}</td><td><b style="color:var(--red)">${num(r.pos)}</b></td><td>${num(r.neg)}</td>
+      <td>${fx(r.rate)}</td><td>${num(r.male)}</td><td>${num(r.female)}</td>
+      <td>${num(r.posMale)}</td><td>${num(r.posFemale)}</td><td>${num(r.drug)}</td>
+      <td>${fx(r.age,1)}</td></tr>`;
+  });
+  h+=`<tr style="font-weight:700;background:var(--surface-2)">
+     <td class="n">รวมทั้งหมด (${d.length} แห่ง)</td><td></td><td></td>
+     <td>${num(o.tot)}</td><td style="color:var(--red)">${num(o.pos)}</td><td>${num(o.neg)}</td>
+     <td>${fx(pct(o.pos,o.tot))}</td><td>${num(o.male)}</td><td>${num(o.female)}</td>
+     <td>${num(o.posMale)}</td><td>${num(o.posFemale)}</td><td>${num(o.drug)}</td><td>—</td></tr>`;
+  h+=`</tbody>`;
+  $('#unitTbl').innerHTML=h;
+}
+function renderAgesTable(){
+  const d=byAge(); const o=overview();
+  let h=`<thead><tr><th class="n">กลุ่มอายุ (ปี)</th><th>ตรวจคัดกรอง</th><th>ผลบวก</th><th>ผลลบ</th>
+    <th>ร้อยละผลบวก</th><th>% ของผู้ตรวจทั้งหมด</th></tr></thead><tbody>`;
+  d.forEach(r=>{h+=`<tr><td class="n">${r.lab}</td><td>${num(r.tot)}</td>
+    <td><b style="color:var(--red)">${num(r.pos)}</b></td><td>${num(r.neg)}</td>
+    <td>${fx(r.rate)}</td><td>${fx(pct(r.tot,o.tot))}</td></tr>`;});
+  h+=`<tr style="font-weight:700;background:var(--surface-2)"><td class="n">รวม</td><td>${num(o.tot)}</td>
+    <td style="color:var(--red)">${num(o.pos)}</td><td>${num(o.neg)}</td><td>${fx(pct(o.pos,o.tot))}</td><td>100.00</td></tr></tbody>`;
+  $('#ageTbl').innerHTML=h;
+}
+function renderValidation(){
+  $('#validList').innerHTML=VALIDATION.map(v=>`
+    <div class="val-item"><div class="t">${esc(v.t)}
+      <span class="badge ${v.ok?'ok':'w'}">${v.ok?'ผ่าน':'ควรแก้ไข'}</span></div>
+      <div class="r">${esc(v.r)}</div><div class="n">↳ ${esc(v.n)}</div></div>`).join('');
+}
+
+/* ============ RECORDS TABLE ============ */
+function applyFilter(){
+  const q=$('#q').value.trim().toLowerCase();
+  const fa=$('#fAct').value, fu=$('#fUnit').value, fr=$('#fResult').value, fs=$('#fSex').value;
+  VIEWFILTER=RECORDS.filter(r=>{
+    if(fa&&r["กิจกรรม"]!==fa) return false;
+    if(fu&&r["หน่วยบริการ"]!==fu) return false;
+    if(fr&&String(r["ผลตรวจ OV"]).toLowerCase()!==fr) return false;
+    if(fs&&r["เพศ"]!==fs) return false;
+    if(q){const blob=[r["ชื่อ"],r["นามสกุล"],r["เลขบัตรประชาชน"],r["หน่วยบริการ"],r["ตำบล"],r["CHECKUP NO."]].join(' ').toLowerCase();
+      if(!blob.includes(q)) return false;}
+    return true;
+  });
+  VIEWFILTER.sort((a,b)=>{
+    let x=a[sortKey],y=b[sortKey];
+    const nx=parseFloat(x),ny=parseFloat(y);
+    if(isFinite(nx)&&isFinite(ny)){x=nx;y=ny;}
+    else {x=String(x||'');y=String(y||'');}
+    return (x>y?1:x<y?-1:0)*sortDir;
+  });
+  page=1; renderTable();
+}
+function renderTable(){
+  const total=VIEWFILTER.length, pages=Math.max(1,Math.ceil(total/pageSize));
+  if(page>pages)page=pages;
+  const start=(page-1)*pageSize, slice=VIEWFILTER.slice(start,start+pageSize);
+  $('#thead').innerHTML=TABLE_COLS.map(c=>{
+    const isN=["ลำดับ","อายุ"].includes(c);
+    const arrow=sortKey===c?(sortDir>0?' ▲':' ▼'):'';
+    return `<th class="${isN?'':'n'}" data-sort="${esc(c)}">${esc(c)}${arrow}</th>`;
+  }).join('')+'<th style="cursor:default">จัดการ</th>';
+  let h='';
+  slice.forEach(r=>{
+    h+='<tr>'+TABLE_COLS.map(c=>{
+      let v=r[c]==null?'':r[c];
+      if(c==="กิจกรรม") return `<td class="n"><span class="tag ${v==='M-Lab'?'ml':'mdt'}">${esc(v)}</span></td>`;
+      if(c==="ผลตรวจ OV"){const p=String(v).toLowerCase()==='positive';return `<td class="n"><span class="tag ${p?'pos':'neg'}">${esc(v)}</span></td>`;}
+      if(c==="ได้รับยา"){const y=v==='ใช่';return `<td class="n"><span class="tag ${y?'yes':'no'}">${esc(v)}</span></td>`;}
+      const isN=["ลำดับ","อายุ"].includes(c);
+      return `<td class="${isN?'':'n'}">${esc(v)}</td>`;
+    }).join('')+
+    `<td class="n" style="white-space:nowrap">
+      <button class="actbtn" title="แก้ไข" onclick="openEdit(${r._row})">✏️</button>
+      <button class="actbtn del" title="ลบ" onclick="askDelete(${r._row})">🗑️</button></td></tr>`;
+  });
+  if(!slice.length) h=`<tr><td colspan="${TABLE_COLS.length+1}" style="text-align:center;padding:40px;color:var(--muted)">ไม่พบข้อมูลตามเงื่อนไข</td></tr>`;
+  $('#tbody').innerHTML=h;
+  $('#pageInfo').textContent=`แสดง ${total?num(start+1):0}–${num(Math.min(start+pageSize,total))} จาก ${num(total)} ราย`;
+  renderPager(pages);
+  $$('#thead th[data-sort]').forEach(th=>th.onclick=()=>{
+    const k=th.dataset.sort; if(sortKey===k)sortDir*=-1; else{sortKey=k;sortDir=1;} applyFilter();
+  });
+}
+function renderPager(pages){
+  const el=$('#pager'); let h='';
+  const btn=(p,l,cur,dis)=>`<button ${dis?'disabled':''} class="${cur?'cur':''}" onclick="gotoPage(${p})">${l||p}</button>`;
+  h+=btn(page-1,'‹',false,page<=1);
+  const win=[]; const add=p=>{if(p>=1&&p<=pages&&!win.includes(p))win.push(p);};
+  add(1);add(2);add(pages);add(pages-1);for(let p=page-1;p<=page+1;p++)add(p);
+  win.sort((a,b)=>a-b);
+  let prev=0;
+  win.forEach(p=>{if(p-prev>1)h+='<span class="mut">…</span>';h+=btn(p,null,p===page);prev=p;});
+  h+=btn(page+1,'›',false,page>=pages);
+  el.innerHTML=h;
+}
+window.gotoPage=p=>{page=p;renderTable();};
+
+/* ============ MODAL FORM ============ */
+function buildForm(rec){
+  let lastSec='';
+  $('#formGrid').innerHTML=FIELDS.map((f,i)=>{
+    let head=''; if(f.sec!==lastSec){lastSec=f.sec;head=`<div class="sec-label">${esc(f.sec)}</div>`;}
+    const val = rec ? (rec[f.k]??'') : (f.def??'');
+    const id='fld_'+i;
+    let ctrl='';
+    if(f.t==='select'){
+      const opts=f.opt.slice();
+      if(val && !opts.includes(String(val))) opts.push(String(val));
+      ctrl=`<select id="${id}">`+opts.map(o=>`<option ${String(val)===o?'selected':''}>${esc(o)}</option>`).join('')+`</select>`;
+    }else if(f.t==='datalist'){
+      const list=DATALIST[f.src]||[];
+      ctrl=`<input id="${id}" list="dl_${f.src}" value="${esc(val)}" ${f.ph?`placeholder="${esc(f.ph)}"`:''}>
+        <datalist id="dl_${f.src}">`+list.map(o=>`<option value="${esc(o)}">`).join('')+`</datalist>`;
+    }else{
+      ctrl=`<input id="${id}" type="${f.t==='number'?'number':'text'}" value="${esc(val)}"
+        ${f.maxlength?`maxlength="${f.maxlength}"`:''} ${f.ph?`placeholder="${esc(f.ph)}"`:''}>`;
+    }
+    return head+`<div class="fg">
+      <label>${esc(f.k)}${f.auto?' <span class="mut">(อัตโนมัติได้)</span>':''}</label>${ctrl}</div>`;
+  }).join('');
+}
+function collectForm(){
+  const rec={};
+  FIELDS.forEach((f,i)=>{
+    const el=document.getElementById('fld_'+i);
+    if(el) rec[f.k]=el.value;
+  });
+  return rec;
+}
+window.openEdit=(row)=>{
+  const rec=RECORDS.find(r=>r._row===row); if(!rec)return;
+  editingRow=row; $('#modalTitle').textContent='แก้ไขข้อมูล — '+(rec["ชื่อ"]||'')+' '+(rec["นามสกุล"]||'');
+  buildForm(rec); $('#overlay').classList.add('show');
+};
+function openAdd(){
+  editingRow=null; $('#modalTitle').textContent='เพิ่มข้อมูลผู้รับการตรวจ';
+  buildForm(null); $('#overlay').classList.add('show');
+}
+function closeModal(){$('#overlay').classList.remove('show');}
+async function save(){
+  const rec=collectForm();
+  if(!rec["ชื่อ"] && !rec["เลขบัตรประชาชน"]){toast('กรุณากรอกชื่อหรือเลขบัตรประชาชน',true);return;}
+  const btn=$('#saveBtn'); btn.disabled=true; btn.textContent='กำลังบันทึก…';
+  try{
+    let res;
+    if(editingRow) res=await postAction({action:'update',_row:editingRow,record:rec});
+    else res=await postAction({action:'add',record:rec});
+    if(res&&res.ok===false) throw new Error(res.error||'บันทึกไม่สำเร็จ');
+    closeModal(); toast(editingRow?'แก้ไขข้อมูลแล้ว':'เพิ่มข้อมูลแล้ว');
+    await loadData();
+    if(!editingRow) switchView('records');
+  }catch(err){toast('ผิดพลาด: '+err.message,true);}
+  finally{btn.disabled=false;btn.textContent='บันทึก';}
+}
+window.askDelete=(row)=>{
+  const rec=RECORDS.find(r=>r._row===row); if(!rec)return;
+  deletingRow=row;
+  $('#delMsg').innerHTML='ต้องการลบ <b>'+esc((rec["คำนำหน้า"]||'')+(rec["ชื่อ"]||'')+' '+(rec["นามสกุล"]||''))+
+    '</b> (หน่วย '+esc(rec["หน่วยบริการ"]||'')+') ใช่หรือไม่? การลบไม่สามารถย้อนกลับได้';
+  $('#delOverlay').classList.add('show');
+};
+async function doDelete(){
+  const btn=$('#delConfirm'); btn.disabled=true; btn.textContent='กำลังลบ…';
+  try{
+    const res=await postAction({action:'delete',_row:deletingRow});
+    if(res&&res.ok===false) throw new Error(res.error||'ลบไม่สำเร็จ');
+    $('#delOverlay').classList.remove('show'); toast('ลบข้อมูลแล้ว');
+    await loadData();
+  }catch(err){toast('ผิดพลาด: '+err.message,true);}
+  finally{btn.disabled=false;btn.textContent='ลบข้อมูล';}
+}
+
+/* ============ FILTER OPTIONS ============ */
+function fillFilterOptions(){
+  const units=[...new Set(RECORDS.map(r=>r["หน่วยบริการ"]).filter(Boolean))].sort();
+  const acts=[...new Set(RECORDS.map(r=>r["กิจกรรม"]).filter(Boolean))];
+  const cur=$('#fUnit').value;
+  $('#fUnit').innerHTML='<option value="">หน่วยบริการ: ทั้งหมด</option>'+units.map(u=>`<option ${u===cur?'selected':''}>${esc(u)}</option>`).join('');
+  const ca=$('#fAct').value;
+  $('#fAct').innerHTML='<option value="">กิจกรรม: ทั้งหมด</option>'+acts.map(a=>`<option ${a===ca?'selected':''}>${esc(a)}</option>`).join('');
+}
+
+/* ============ RENDER ALL ============ */
+function renderAll(){
+  renderKPIs(); renderUnitChart(); renderDonuts(); renderAgeChart(); renderActChart();
+  renderUnitsTable(); renderAgesTable(); renderValidation();
+  fillFilterOptions(); applyFilter();
+}
+
+/* ============ NAV ============ */
+function switchView(v){
+  $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v));
+  $$('.view').forEach(s=>s.classList.toggle('active',s.id==='view-'+v));
+}
+
+/* ============ THEME ============ */
+function initTheme(){
+  const saved=localStorage.getItem('ov-theme');
+  if(saved) document.documentElement.setAttribute('data-theme',saved);
+  $('#themeBtn').onclick=()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const next=cur==='dark'?'light':(cur==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('ov-theme',next);
+    if(RECORDS.length) renderAll();
+  };
+}
+
+/* ============ AUTH — ล็อกอินเฉพาะแท็บรายชื่อผู้ป่วย (ฝั่งเบราว์เซอร์) ============ */
+const AUTH = { user:'admin', pass:'1234' };   // แก้ชื่อผู้ใช้/รหัสผ่านได้ที่บรรทัดนี้
+function isAuthed(){ return sessionStorage.getItem('ov-auth')==='1'; }
+function applyAuthUI(){
+  document.body.classList.toggle('authed', isAuthed());
+  if(isAuthed() && RECORDS.length) applyFilter();   // เติมตารางรายชื่อ
+}
+function doLogin(e){
+  e.preventDefault();
+  const u=$('#loginUser').value.trim(), p=$('#loginPass').value;
+  if(u===AUTH.user && p===AUTH.pass){
+    sessionStorage.setItem('ov-auth','1');
+    $('#loginErr').textContent=''; $('#loginPass').value='';
+    applyAuthUI();
+    toast('เข้าสู่ระบบสำเร็จ');
+  }else{
+    $('#loginErr').textContent='ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
+    $('#loginPass').value=''; $('#loginPass').focus();
+  }
+}
+function logout(){
+  sessionStorage.removeItem('ov-auth');
+  applyAuthUI();
+  switchView('dash');   // กลับหน้าภาพรวม
+  toast('ออกจากระบบแล้ว');
+}
+
+/* ============ INIT ============ */
+document.addEventListener('DOMContentLoaded',()=>{
+  initTheme();
+  $('#loginForm').addEventListener('submit',doLogin);
+  $('#logoutBtn').onclick=logout;
+  $('#tabs').addEventListener('click',e=>{
+    const t=e.target.closest('.tab'); if(!t) return;
+    switchView(t.dataset.view);
+    if(t.dataset.view==='records' && !isAuthed()) setTimeout(()=>$('#loginUser') && $('#loginUser').focus(),60);
+  });
+  $('#refreshBtn').onclick=loadData;
+  $('#addBtn').onclick=openAdd;
+  $('#closeModal').onclick=closeModal; $('#cancelBtn').onclick=closeModal;
+  $('#saveBtn').onclick=save;
+  $('#delCancel').onclick=()=>$('#delOverlay').classList.remove('show');
+  $('#delConfirm').onclick=doDelete;
+  $('#overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeModal();});
+  $('#delOverlay').addEventListener('click',e=>{if(e.target.id==='delOverlay')$('#delOverlay').classList.remove('show');});
+  ['q','fAct','fUnit','fResult','fSex'].forEach(id=>{
+    const el=$('#'+id); el.addEventListener(id==='q'?'input':'change',applyFilter);
+  });
+  $('#pageSize').addEventListener('change',e=>{pageSize=+e.target.value;page=1;renderTable();});
+  applyAuthUI();
+  loadData();   // โหลดข้อมูลทันที (dashboard เปิดดูได้เลย)
+});
+</script>
+</body>
+</html>
